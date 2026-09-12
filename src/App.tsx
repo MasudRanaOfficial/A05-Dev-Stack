@@ -1,12 +1,25 @@
-function App() {
- 
+import { Suspense } from "react";
+import Loader from "./components/common/Loader";
+import TechnologiesContent from "./components/technologies/TechnologiesContent";
+import type { Technology } from "./types/technology";
 
+
+const technologiesPromise: Promise<Technology[]> = fetch(
+  "/data/technologies.json",
+).then((res) => {
+  if (!res.ok) {
+    throw new Error("Failed to load technologies");
+  }
+
+  return res.json();
+});
+
+function App() {
   return (
-    <>
-      <h1 className="text-4xl text-red-300">Hi I am Masud</h1>
-      <button className="btn btn-neutral">Neutral</button>
-    </>
+    <Suspense fallback={<Loader message="Loading technologies..." />}>
+      <TechnologiesContent technologiesPromise={technologiesPromise} />
+    </Suspense>
   );
 }
 
-export default App
+export default App;
