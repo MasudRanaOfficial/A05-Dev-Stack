@@ -1,32 +1,50 @@
-# React + TypeScript + Vite
+# Dev Stack Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Dev Stack Builder is an interactive web platform designed to help developers explore modern tools and curate their custom technology stack. Users can browse technologies across categories, inspect ratings and details, and manage their personal stack in real time.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🔗 Project Links
+- **Live Site:** https://dev-stack-by-masud.netlify.app/
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Technologies Used
+- **React.js (TypeScript)**
+- **Vite**
+- **Tailwind CSS & DaisyUI**
+- **React-Toastify**
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## ✨ Key Features
+- **Dynamic Technology Catalog:** Fetches and displays a wide range of developer tools categorized by Frontend, Backend, Database, and more, complete with ratings and badges.
+- **Interactive Stack Management:** Add technologies to a dedicated sidebar with one click, prevent duplicate entries, and track total selected items.
+- **Instant Item Removal & Clear All:** Remove specific items or clear the entire stack immediately, supported by responsive feedback alerts via `react-toastify`.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+---
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 💡 React Questions & Answers
+
+### 1. What is JSX, and why is it used in React?
+JSX stands for JavaScript XML. It lets you write HTML-like syntax directly inside JavaScript files, making component structures intuitive, cleaner, and easier to understand.
+
+### 2. What is the difference between props and state?
+- **Props:** Data passed down from a parent component to a child component (read-only).
+- **State:** Internal data managed within the component that can change over time based on user interactions.
+
+### 3. What does the `useState` hook do, and where did you use it in this project?
+The `useState` hook allows functional components to store and update dynamic data. In this project, it is used to track the list of selected tools in the stack (`selectedStack`) and the loading status (`isLoading`).
+
+### 4. What does the `useEffect` hook do, and why did you need it to load the JSON data?
+`useEffect` handles side effects like data fetching or subscriptions. It was used to fetch the `technologies.json` file once when the page initially loads.
+
+### 5. Why does every item in a `.map()` list need a unique `key` prop?
+The `key` prop helps React identify which items have changed, been added, or been removed. This ensures efficient DOM updates and prevents unnecessary re-rendering.
+
+### 6. What is conditional rendering? Show one place you used it.
+Conditional rendering means showing different UI elements based on specific conditions. In this project, it renders the `EmptyStack` component when no items are selected and shows the active list with a "Remove All" button when items exist.
+
+### 7. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
+- **Parent to Child:** Passed directly using **props**.
+- **Child to Parent:** Passed by sending a **callback function** through props, which the child triggers with data when an event happens.
