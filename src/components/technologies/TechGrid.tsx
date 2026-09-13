@@ -1,5 +1,4 @@
 import type { Technology } from "../../types/technology";
-
 import TechCard from "./TechCard";
 
 interface TechGridProps {
@@ -8,13 +7,13 @@ interface TechGridProps {
   onAddToStack: (tech: Technology) => void;
 }
 
-export function TechGrid({
+const TechGrid = ({
   technologies,
   stackItemIds,
   onAddToStack,
-}: TechGridProps) {
+}: TechGridProps) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       {technologies.map((tech) => (
         <TechCard
           key={tech.id}
@@ -25,4 +24,6 @@ export function TechGrid({
       ))}
     </div>
   );
-}
+};
+
+export default TechGrid;
