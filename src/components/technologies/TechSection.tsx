@@ -25,7 +25,7 @@ export default function TechSection({
           <div className="lg:col-span-9">
             <TechGrid technologies={technologies} />
           </div>
-          <aside className="lg:col-span-2">{sidebarSlot}</aside>
+          <aside className="lg:col-span-3">{sidebarSlot}</aside>
         </div>
       </div>
     </section>
