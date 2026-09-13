@@ -6,7 +6,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/layout/Navbar";
 
-
 const technologiesPromise: Promise<Technology[]> = fetch(
   "/data/technologies.json",
 ).then((res) => {
@@ -18,26 +17,22 @@ const technologiesPromise: Promise<Technology[]> = fetch(
 });
 
 const navLinks = [
-  {label: "Home", href: "#home"},
-  {label: "Technologies", href: "#technologies"},
-  {label: "Projects", href: "#projects"},
-  {label: "About", href: "#about"},
-  {label: "Contact", href: "#contact"},
-]
+  { label: "Home", href: "#home" },
+  { label: "Technologies", href: "#technologies" },
+  { label: "Projects", href: "#projects" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
 
 function App() {
-
   const [activeTab, setActiveTab] = useState("Home");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  console.log(isMobileMenuOpen);
   return (
     <>
       <ToastContainer position="top-right" autoClose={1500} />
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
         navLinks={navLinks}
       />
       <Suspense fallback={<Loader message="Loading technologies..." />}>
