@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/layout/Navbar";
 import { HeroBanner } from "./components/home/HeroBanner";
+import  Footer  from "./components/layout/Footer";
 
 
 const technologiesPromise: Promise<Technology[]> = fetch(
@@ -41,6 +42,7 @@ function App() {
       <Suspense fallback={<Loader message="Loading technologies..." />}>
         <TechnologiesContent technologiesPromise={technologiesPromise} />
       </Suspense>
+      <Footer/>
     </>
   );
 }
