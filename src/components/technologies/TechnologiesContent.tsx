@@ -2,6 +2,7 @@ import { use, useState } from "react";
 import type { Technology } from "../../types/technology";
 import StackSidebar from "../stack/StackSidebar";
 import TechSection from "./TechSection";
+import { toast } from "react-toastify";
 
 interface TechnologiesContentProps {
   technologiesPromise: Promise<Technology[]>;
@@ -16,19 +17,32 @@ const TechnologiesContent = ({
   const handleAddToStack = (tech: Technology) => {
     const isAlreadyAdded = selectedStack.some((item) => item.id === tech.id);
     if (isAlreadyAdded) {
-      alert(`$(tech.name) is already added to your stack!`);
+      toast.warning(`${tech.name} is already added to your stack!`);
       return;
     }
 
     setSelectedStack([...selectedStack, tech]);
+    toast.success(`${tech.name} added to your stack!`)
   };
 
   const handleRemoveItem = (id: string) => {
+
+    const removedItem = selectedStack.find((item) => item.id === id);
+
     setSelectedStack(selectedStack.filter(item => item.id !== id))
+
+    if(removedItem) {
+      toast.info(`${removedItem.name} remove from your stack`)
+    }
+    
   };
 
   const handleClearStack = () => {
+    if(selectedStack.length === 0) {
+      return;
+    }
     setSelectedStack([]);
+    toast.error("All technologies removed from your stack")
   }
 
   return (
