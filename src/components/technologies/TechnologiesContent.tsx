@@ -1,6 +1,6 @@
 import { use, useState } from "react";
 import type { Technology } from "../../types/technology";
-import { TechGrid } from "./TechGrid";
+import TechSection from "./TechSection";
 
 interface TechnologiesContentProps {
   technologiesPromise: Promise<Technology[]>;
@@ -15,17 +15,13 @@ const TechnologiesContent = ({
   console.log(selectedStack, setSelectedStack);
 
   return (
-    <main className="max-w-7xl mx-auto px-4 py-10">
-      <h1 className="text-4xl font-bold text-gray-900">Dev Stack</h1>
-
-      <p className="mt-2 text-gray-500">
-        Total technologies: {technologies.length}
-      </p>
-
-      <div className="mt-8">
-        <TechGrid technologies={technologies}/>
+    <TechSection technologies={technologies} sidebarSlot={
+      <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+        <h3 className="text-xl font-bold text-slate-950">Your Stack</h3>
+        <p className="mt-2 text-sm text-slate-400">No technologies selected yet.</p>
       </div>
-    </main>
+    }></TechSection>
+    
   );
 };
 
