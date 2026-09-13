@@ -23,12 +23,23 @@ const TechnologiesContent = ({
     setSelectedStack([...selectedStack, tech]);
   };
 
+  const handleRemoveItem = (id: string) => {
+    setSelectedStack(selectedStack.filter(item => item.id !== id))
+  };
+
+  const handleClearStack = () => {
+    setSelectedStack([]);
+  }
+
   return (
     <TechSection
       technologies={technologies}
       stackItemIds={selectedStack.map((item) => item.id)}
       onAddToStack={handleAddToStack}
-      sidebarSlot={<StackSidebar selectedStack={selectedStack} />}
+      sidebarSlot={<StackSidebar 
+    selectedStack={selectedStack}
+    onRemoveItem={handleRemoveItem}
+    onClearStack={handleClearStack} />}
     ></TechSection>
   );
 };

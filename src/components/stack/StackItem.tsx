@@ -2,9 +2,10 @@ import type { Technology } from "../../types/technology";
 
 export interface StackItemProps {
   item: Technology;
+  onRemove: (id: string) => void;
 }
 
-export default function StackItem({ item }: StackItemProps) {
+export default function StackItem({ item, onRemove }: StackItemProps) {
   return (
     <div className="flex items-center justify-between rounded-lg border border-slate-200 p-3">
       <div className="flex items-center gap-3">
@@ -22,6 +23,7 @@ export default function StackItem({ item }: StackItemProps) {
       </div>
       <button
         type="button"
+        onClick={() => onRemove(item.id)}
         className="text-2xl leading-none text-slate-950 hover:text-slate-700"
       >
         ⨉
