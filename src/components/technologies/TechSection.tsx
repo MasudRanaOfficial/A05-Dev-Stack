@@ -4,12 +4,16 @@ import { TechGrid } from "./TechGrid";
 
 interface TechSectionProps {
   technologies: Technology[];
+  stackItemIds: string[];
+  onAddToStack: (tech: Technology) => void;
   sidebarSlot: ReactNode;
 }
 
 export default function TechSection({
   technologies,
   sidebarSlot,
+  onAddToStack,
+  stackItemIds
 }: TechSectionProps) {
   return (
     <section id="technologies" className="py-24">
@@ -23,7 +27,11 @@ export default function TechSection({
         </div>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           <div className="lg:col-span-9">
-            <TechGrid technologies={technologies} />
+            <TechGrid 
+            technologies={technologies}
+            stackItemIds={stackItemIds}
+            onAddToStack={onAddToStack}
+            />
           </div>
           <aside className="lg:col-span-3">{sidebarSlot}</aside>
         </div>

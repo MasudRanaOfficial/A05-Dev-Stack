@@ -13,13 +13,23 @@ const TechnologiesContent = ({
   const technologies = use(technologiesPromise);
   const [selectedStack, setSelectedStack] = useState<Technology[]>([]);
 
-  console.log(setSelectedStack);
+  const handleAddToStack = (tech: Technology) => {
+    const isAlreadyAdded = selectedStack.some((item) => item.id === tech.id);
+    if (isAlreadyAdded) {
+      alert(`$(tech.name) is already added to your stack!`);
+      return;
+    }
+
+    setSelectedStack([...selectedStack, tech]);
+  };
 
   return (
-    <TechSection technologies={technologies} sidebarSlot={
-      <StackSidebar selectedStack={selectedStack}/>
-    }></TechSection>
-    
+    <TechSection
+      technologies={technologies}
+      stackItemIds={selectedStack.map((item) => item.id)}
+      onAddToStack={handleAddToStack}
+      sidebarSlot={<StackSidebar selectedStack={selectedStack} />}
+    ></TechSection>
   );
 };
 

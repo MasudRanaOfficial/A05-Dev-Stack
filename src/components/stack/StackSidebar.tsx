@@ -23,7 +23,12 @@ export default function StackSidebar({ selectedStack }: StackSidebarProps) {
           {selectedStack.map((item) => (
             <StackItem key={item.id} item={item} />
           ))}
-          <button type="button" className="mt-8 h-11 w-full rounded-lg border border-red-300 text-sm font-bold text-red-500">Remove All</button>
+          <button
+            type="button"
+            className="mt-8 h-11 w-full rounded-lg border border-red-300 text-sm font-bold text-red-500"
+          >
+            Remove All
+          </button>
         </div>
       )}
     </div>

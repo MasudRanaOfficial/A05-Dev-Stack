@@ -3,9 +3,11 @@ import { RatingStar } from "../common/RatingStar";
 
 interface TechCardProps {
   tech: Technology;
+  isAdded: boolean;
+  onAddToStack: (tech: Technology) => void;
 }
 
-const TechCard = ({ tech }: TechCardProps) => {
+const TechCard = ({ tech, isAdded, onAddToStack }: TechCardProps) => {
   return (
     <div className="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4">
@@ -23,8 +25,13 @@ const TechCard = ({ tech }: TechCardProps) => {
         <span className="text-sx font-normal text-slate-400">{tech.difficulty}</span>
         <RatingStar rating={tech.rating}/>
       </div>
-        <button type="button" className="mt-5 h-11 w-full rounded-lg bg-slate-950 text-sm font-medium text-white transition hover:bg-slate-900">
-          Add to Stack
+        <button type="button"
+        onClick={() => onAddToStack(tech)}
+        disabled={isAdded}
+        className={`mt-5 h-11 w-full rounded-lg text-sm font-medium transition ${isAdded ? "cursor-not-allowed bg=slate-100 text-slate-400" : "bg-slate-950 text-white hover:bg-slate-400"}`}>
+          {
+            isAdded ? "Added to Stack" : "Add to Stack"
+          }
         </button>
     </div>
   );
